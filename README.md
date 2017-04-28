@@ -35,10 +35,10 @@ Harman.addEventListener("scancomplete",function(devicelist){
     devicelist.forEach(function(device) {
         console.log(device);
     });
-    Harman.stopDeviceScan();
+    Harman.stopRefreshDeviceInfo();
 });
-Harman.startDeviceScan();  // will refresh and update every 2 seconds the status of the devices in the
-                    // current WiFi network.```
+Harman.startRefreshDeviceInfo();  
+// will refresh and update every 2 seconds the status of the devices in the current WiFi network.
 ```
 ## Get the number of available speakers
 ```javascript
