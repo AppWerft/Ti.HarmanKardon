@@ -1,21 +1,18 @@
 # Ti.Harman
-
+<img src="https://www.developer.harman.com/images/harman/logo/Harman_Logo.png" width=200 />
 Appcelerator Titanium module for controling Harman SDK (Soundsystem).
+
+The Harman/Kardon WirelessHD SDK is provided for Android 3rd party developers to communicate
+with Harman/Kardon Omni Series audio/video devices. The intent of this SDK is to provide the tools
+and libraries necessary to build, test and deploy the latest audio applications on the Android platform.
 
 ## Permissions
 
 First we need a lot of permissions:
 
 ```xml
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 ```
@@ -26,15 +23,16 @@ A part of it needs runtime permissions for API upto M.
 ## Browsing for Harman devices
 ```javascript
 var Harman = require("de.appwerft.harman");
-Harman.startDeviceScan();
-Harman.addEventListener("load",function(devicelist){
-    devicelist.forEach(showDevicesFn);
+
+Harman.addEventListener("scancomplete",function(devicelist){
+    devicelist.forEach(function(device) {
+        console.log(device);
+    });
+    Harman.stopRefreshDeviceInfo();
 });
-Harman.stopDeviceScan();
-
-startDeviceScan() will refresh and update every 2 seconds the status of the devices in the
-current WiFi network.```
-
+Harman.startRefreshDeviceInfo();  
+// will refresh and update every 2 seconds the status of the devices in the current WiFi network.
+```
 ## Get the number of available speakers
 ```javascript
 Harman.getDeviceCount();
@@ -72,7 +70,7 @@ To play a music on a specific speaker, the speaker should be added to the playba
 Harman.addDeviceToSession(0));
 Harman.removeDeviceToSession(0));
 ```
-### Play a  song 
+### Play a local file 
 ```javascript
 var Player = createAudioCodecHandler();
 Player.playCAF({
@@ -81,6 +79,13 @@ Player.playCAF({
     resume : resumeFlag
 });
 ```
+### Play a remote url
+```javascript
+var Player = createAudioCodecHandler();
+Player.playStreamingMedia(url);
+```
+This method is part of original documentation, but not part of jar. 
+
 Here, resumeFlag is false, if you start the song from the beginning. If you want to resume to play the
 current song, then resumeFlag should be true. ‘songTitle’ is a string, representing the song name. (This
 is only internally used as a file name to store converted PCM data in the memory temporarily.)
