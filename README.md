@@ -28,10 +28,11 @@ A part of it needs runtime permissions for API upto M.
 var Harman = require("de.appwerft.harman");
 
 Harman.addEventListener("scancomplete",function(devicelist){
-    devicelist.forEach(showDevicesFn);
+    devicelist.forEach(function(device) {
+        console.log(device);
+    });
+    Harman.stopDeviceScan();
 });
-Harman.stopDeviceScan();
-
 Harman.startDeviceScan();  // will refresh and update every 2 seconds the status of the devices in the
                     // current WiFi network.```
 ```
