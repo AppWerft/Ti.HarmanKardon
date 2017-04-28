@@ -1,5 +1,5 @@
 # Ti.Harman
-
+![](https://www.developer.harman.com/images/harman/logo/Harman_Logo.png)
 Appcelerator Titanium module for controling Harman SDK (Soundsystem).
 
 ## Permissions
