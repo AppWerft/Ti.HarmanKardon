@@ -26,8 +26,8 @@ A part of it needs runtime permissions for API upto M.
 ## Browsing for Harman devices
 ```javascript
 var Harman = require("de.appwerft.harman");
-Harman.startDeviceScan();
-Harman.addEventListener("load",function(devicelist){
+
+Harman.addEventListener("scancomplete",function(devicelist){
     devicelist.forEach(showDevicesFn);
 });
 Harman.stopDeviceScan();
