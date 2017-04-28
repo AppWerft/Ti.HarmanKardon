@@ -23,13 +23,18 @@ A part of it needs runtime permissions for API upto M.
 
 # Usage
 
+## Browsing for Harman devices
 ```javascript
 var Harman = require("de.appwerft.harman");
 Harman.startDeviceScan();
 Harman.addEventListener("load",function(devicelist){
     devicelist.forEach(showDevicesFn);
 });
-
 Harman.stopDeviceScan();
 
 ```
+Every device has a lot of paramters:
+
+# [-] deviceName
+
+## 
