@@ -32,9 +32,38 @@ Harman.addEventListener("load",function(devicelist){
 });
 Harman.stopDeviceScan();
 
+startDeviceScan() will refresh and update every 2 seconds the status of the devices in the
+current WiFi network.```
+
+## Get the number of available speakers
+```javascript
+Harman.getDeviceCount();
+```
+## Get info of a device
+
+```javascript
+Harman.getDeviceInfoByIndex(0); // or other int in range
 ```
 Every device has a lot of paramters:
-
+- [x] deviceId      the unique ID of the speaker
 - [x] deviceName
+- [x] ipAddress
+- [x] volume
+- [x] port
+- [x] modelName
+- [x] zoneName
+- [x] active
+- [x] version
+- [x] wifiSignalStrength
+- [x] groupId
+- [x] balance
+- [x] isPlaying
+- [x] channelType
+- [x] isMaster
 
-## 
+## Change speaker name
+```javascript
+Harman.setDeviceName(deviceId,”MyOmni10”);
+```
+## Add or remove a speaker to/from a playback session
+To play a music on a specific speaker, the speaker should be added to the playback session
