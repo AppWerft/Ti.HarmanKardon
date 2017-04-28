@@ -11,15 +11,8 @@ and libraries necessary to build, test and deploy the latest audio applications 
 First we need a lot of permissions:
 
 ```xml
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-<uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 ```
@@ -77,7 +70,7 @@ To play a music on a specific speaker, the speaker should be added to the playba
 Harman.addDeviceToSession(0));
 Harman.removeDeviceToSession(0));
 ```
-### Play a  song 
+### Play a local file 
 ```javascript
 var Player = createAudioCodecHandler();
 Player.playCAF({
@@ -86,6 +79,13 @@ Player.playCAF({
     resume : resumeFlag
 });
 ```
+### Play a remote url
+```javascript
+var Player = createAudioCodecHandler();
+Player.playStreamingMedia(url);
+```
+This method is part of original documentation, but not part of jar. 
+
 Here, resumeFlag is false, if you start the song from the beginning. If you want to resume to play the
 current song, then resumeFlag should be true. ‘songTitle’ is a string, representing the song name. (This
 is only internally used as a file name to store converted PCM data in the memory temporarily.)
