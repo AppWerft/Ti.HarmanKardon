@@ -2,6 +2,10 @@
 <img src="https://www.developer.harman.com/images/harman/logo/Harman_Logo.png" width=200 />
 Appcelerator Titanium module for controling Harman SDK (Soundsystem).
 
+The Harman/Kardon WirelessHD SDK is provided for Android 3rd party developers to communicate
+with Harman/Kardon Omni Series audio/video devices. The intent of this SDK is to provide the tools
+and libraries necessary to build, test and deploy the latest audio applications on the Android platform.
+
 ## Permissions
 
 First we need a lot of permissions:
