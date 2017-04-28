@@ -13,26 +13,33 @@ import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.kroll.common.Log;
 
+import com.harman.hkwirelessapi.AudioCodecHandler;
+
 // This proxy can be created by calling Harman.createExample({message: "hello world"})
 @Kroll.proxy(creatableInModule = HarmanModule.class)
-public class AudioCodecHandler extends KrollProxy {
+public class AudioCodecHandlerProxy extends KrollProxy {
 	// Standard Debugging variables
 	private static final String LCAT = "ExampleProxy";
+	AudioCodecHandler hAudioControl;
 
 	// Constructor
-	public AudioCodecHandler() {
+	public AudioCodecHandlerProxy() {
 		super();
+		hAudioControl = new AudioCodecHandler();
 	}
 
-	// Handle creation options
-	@Override
-	public void handleCreationDict(KrollDict options) {
-		super.handleCreationDict(options);
-
-		if (options.containsKey("message")) {
-			Log.d(LCAT,
-					"example created with message: " + options.get("message"));
-		}
+	@Kroll.method
+	public void playWAV(KrollDict opts) {
+		hAudioControl.playWAV("");
 	}
 
+	@Kroll.method
+	public void playStreamingMedia(KrollDict opts) {
+		hAudioControl.playStreamingMedia("URL");
+	}
+
+	@Kroll.method
+	public void playCAV(KrollDict opts) {
+		hAudioControl.playCAF("", "", true);
+	}
 }

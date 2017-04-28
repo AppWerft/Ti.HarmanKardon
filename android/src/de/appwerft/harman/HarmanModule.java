@@ -10,56 +10,81 @@ package de.appwerft.harman;
 
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-
-import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.kroll.common.TiConfig;
+import org.appcelerator.titanium.TiApplication;
 
+import com.harman.hkwirelessapi.HKWirelessHandler;
+import com.harman.hkwirelessapi.HKWirelessListener;
 
-@Kroll.module(name="Harman", id="de.appwerft.harman")
-public class HarmanModule extends KrollModule
-{
+@Kroll.module(name = "Harman", id = "de.appwerft.harman")
+public class HarmanModule extends KrollModule {
 
 	// Standard Debugging variables
-	private static final String LCAT = "HarmanModule";
-	private static final boolean DBG = TiConfig.LOGD;
+	private static final String LCAT = "Harman";
+	HKWirelessHandler hControlHandler;
 
 	// You can define constants with @Kroll.constant, for example:
-	// @Kroll.constant public static final String EXTERNAL_NAME = value;
+	// @Kroll.constant public static final int EXTERNAL_NAME = ;
 
-	public HarmanModule()
-	{
+	public HarmanModule() {
 		super();
+		hControlHandler = new HKWirelessHandler();
+		HKWirelessHandler hWirelessController = new HKWirelessHandler();
+
+		hWirelessController
+				.registerHKWirelessControllerListener(new WirelessListenerHandler());
 	}
 
 	@Kroll.onAppCreate
-	public static void onAppCreate(TiApplication app)
-	{
-		Log.d(LCAT, "inside onAppCreate");
-		// put module init code that needs to run when the application is created
+	public static void onAppCreate(TiApplication app) {
+
 	}
 
 	// Methods
 	@Kroll.method
-	public String example()
-	{
-		Log.d(LCAT, "example called");
-		return "hello world";
+	public void initializeHKWirelessController(String key) {
+		hControlHandler.initializeHKWirelessController("");
 	}
 
-	// Properties
-	@Kroll.getProperty
-	public String getExampleProp()
-	{
-		Log.d(LCAT, "get example property");
-		return "hello world";
+	// Methods
+	@Kroll.method
+	public void startRefreshDeviceInfo() {
+		hControlHandler.startRefreshDeviceInfo();
 	}
 
+	public class WirelessListenerHandler implements HKWirelessListener {
 
-	@Kroll.setProperty
-	public void setExampleProp(String value) {
-		Log.d(LCAT, "set example property: " + value);
+		@Override
+		public void onDeviceStateUpdated(long deviceId, int reason) {
+
+		}
+
+		@Override
+		public void onErrorOccurred(int code, String message) {
+
+		}
+
+		@Override
+		public void onPlayEnded() {
+
+		}
+
+		@Override
+		public void onPlaybackStateChanged(int state) {
+
+		}
+
+		@Override
+		public void onPlaybackTimeChanged(int timeElapsed) {
+
+		}
+
+		@Override
+		public void onVolumeLevelChanged(long deviceId, int deviceVolume,
+				int avgVolume) {
+
+		}
 	}
 
 }
-
