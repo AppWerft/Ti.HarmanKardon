@@ -35,6 +35,6 @@ Harman.stopDeviceScan();
 ```
 Every device has a lot of paramters:
 
-# [-] deviceName
+- [x] deviceName
 
 ## 
