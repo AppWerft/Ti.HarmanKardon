@@ -25,14 +25,14 @@ public class HarmanModule extends KrollModule {
 	HKWirelessHandler hControlHandler;
 
 	// You can define constants with @Kroll.constant, for example:
-	// @Kroll.constant public static final int EXTERNAL_NAME = ;
+	// @Kroll.constant public static final int EXTERNAL_NAME =hControlHandler. ;
 
 	public HarmanModule() {
 		super();
 		hControlHandler = new HKWirelessHandler();
-		HKWirelessHandler hWirelessController = new HKWirelessHandler();
+		HKWirelessHandler hKWirelessHandler = new HKWirelessHandler();
 
-		hWirelessController
+		hKWirelessHandler
 				.registerHKWirelessControllerListener(new WirelessListenerHandler());
 	}
 
@@ -44,7 +44,7 @@ public class HarmanModule extends KrollModule {
 	// Methods
 	@Kroll.method
 	public void initializeHKWirelessController(String key) {
-		hControlHandler.initializeHKWirelessController("");
+		hControlHandler.initializeHKWirelessController(key);
 	}
 
 	// Methods
